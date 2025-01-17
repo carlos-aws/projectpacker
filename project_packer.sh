@@ -188,8 +188,6 @@ tree -f -I "$EXCLUDE_PATTERN" --noreport -i | grep -v "^.$" | grep -v "^..$" > "
 
 # Add pause before reading files
 echo "Directory tree has been written to $OUTPUT_FILE"
-echo "Press Enter to continue with reading file contents..."
-read -r
 
 TOTAL_FILES=0
 
