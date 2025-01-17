@@ -25,7 +25,7 @@ show_help() {
     echo "Options:"
     echo "  -d <directory>    Directory path to analyze (default: current directory)"
     echo "  -e <pattern>      Exclude pattern for tree command (default: 'node_modules|dist|cdk.out')"
-    echo "  -o <filename>     Output filename (default: directory_name_DATETIME.projectpacker)"
+    echo "  -o <filename>     Output filename (default: directory_name_DATETIME.projectpacker.txt)"
     echo "  -h               Show this help message"
     echo "  -fe <extensions>  Additional file extensions to exclude (will be combined with default binary/media file extensions)"
     echo
@@ -95,9 +95,9 @@ DATETIME=$(date +"%Y%m%d_%H%M%S")
 # Set output filename as current folder name if not provided
 if [ -z "$OUTPUT_NAME" ]; then
     BASE_DIR=$(basename "$DIR_PATH")
-    OUTPUT_FILE="${BASE_DIR}_${DATETIME}.projectpacker"
+    OUTPUT_FILE="${BASE_DIR}_${DATETIME}.projectpacker.txt"
 else
-    OUTPUT_FILE="${OUTPUT_NAME}_${DATETIME}.projectpacker"
+    OUTPUT_FILE="${OUTPUT_NAME}_${DATETIME}.projectpacker.txt"
 fi
 
 # Create or clear the output file
@@ -200,7 +200,7 @@ while IFS= read -r file; do
         # Skip if file ends with package-lock.json
         if [[ "$file" != *"package-lock.json" ]]; then
             # Check if the file matches any of the excluded patterns
-            if [[ ! "$file" =~ \.projectpacker$ && ! "$file" =~ ($FILE_EXTENSIONS_EXCLUDE)$ ]]; then
+            if [[ ! "$file" =~ \.projectpacker.txt$ && ! "$file" =~ ($FILE_EXTENSIONS_EXCLUDE)$ ]]; then
                 echo "Processing: $file"
                 echo "" >> "$OUTPUT_FILE"
                 echo "================" >> "$OUTPUT_FILE"
